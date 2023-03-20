@@ -107,7 +107,7 @@ int main(void)
   //read
   uint64_t * RDAddr = (uint64_t *)  addy;
   RData = *RDAddr;
-  printf("");//just a place to put a breakpoint
+  printf();//just a place to put a breakpoint
 
   /* USER CODE END 2 */
 
