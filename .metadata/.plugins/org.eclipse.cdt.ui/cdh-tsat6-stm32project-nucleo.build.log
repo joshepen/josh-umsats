@@ -1,0 +1,27 @@
+13:13:09 **** Incremental Build of configuration Debug for project cdh-tsat6-stm32project-nucleo ****
+make -j6 all 
+arm-none-eabi-gcc "../Drivers/Hardware_Peripherals/Src/Flash_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/Hardware_Peripherals/Test/Inc -I../Drivers/Hardware_Peripherals/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Drivers/Hardware_Peripherals/Src/Flash_driver.d" -MT"Drivers/Hardware_Peripherals/Src/Flash_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Drivers/Hardware_Peripherals/Src/Flash_driver.o"
+../Drivers/Hardware_Peripherals/Src/Flash_driver.c: In function 'Flash_Erase_Address':
+../Drivers/Hardware_Peripherals/Src/Flash_driver.c:55:27: warning: initialization of 'uint8_t *' {aka 'unsigned char *'} from 'int' makes pointer from integer without a cast [-Wint-conversion]
+   55 |  uint8_t *start_address = start_page * 0x800 + 0x8000000;
+      |                           ^~~~~~~~~~
+../Drivers/Hardware_Peripherals/Src/Flash_driver.c:69:19: warning: initialization of 'uint32_t' {aka 'long unsigned int'} from 'uint8_t *' {aka 'unsigned char *'} makes integer from pointer without a cast [-Wint-conversion]
+   69 |  for(uint32_t i = start_address;i<start_address+0x800;i++){
+      |                   ^~~~~~~~~~~~~
+../Drivers/Hardware_Peripherals/Src/Flash_driver.c:69:34: warning: comparison between pointer and integer
+   69 |  for(uint32_t i = start_address;i<start_address+0x800;i++){
+      |                                  ^
+arm-none-eabi-gcc -o "cdh-tsat6-stm32project-nucleo.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\penne\testworkspace\cdh-tsat6\cdh-tsat6-stm32project-nucleo\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="cdh-tsat6-stm32project-nucleo.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: cdh-tsat6-stm32project-nucleo.elf
+ 
+arm-none-eabi-size   cdh-tsat6-stm32project-nucleo.elf 
+arm-none-eabi-objdump -h -S  cdh-tsat6-stm32project-nucleo.elf  > "cdh-tsat6-stm32project-nucleo.list"
+   text	   data	    bss	    dec	    hex	filename
+  16348	     20	   2172	  18540	   486c	cdh-tsat6-stm32project-nucleo.elf
+Finished building: default.size.stdout
+ 
+Finished building: cdh-tsat6-stm32project-nucleo.list
+ 
+
+13:13:14 Build Finished. 0 errors, 3 warnings. (took 5s.185ms)
+

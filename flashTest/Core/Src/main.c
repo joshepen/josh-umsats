@@ -21,6 +21,9 @@
 
 /* Private includes ----------------------------------------------------------*/
 /* USER CODE BEGIN Includes */
+#include <stdio.h>
+#include <stdlib.h>
+#include "Flash_driver.h"
 
 /* USER CODE END Includes */
 
@@ -89,30 +92,20 @@ int main(void)
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
 
-  //erase
-  FLASH_EraseInitTypeDef FLASH_EraseInitStruct = {0}; //instantiate
-  FLASH_EraseInitStruct.TypeErase = FLASH_TYPEERASE_MASSERASE; //set type
-  uint32_t  errorStatus = 0;//idk what error status is
-  HAL_FLASHEx_Erase(&FLASH_EraseInitStruct,&errorStatus); //actual erase
+  Flash_Erase_Page(254,2);
 
-  //write
-  HAL_StatusTypeDef HAL_FLASH_Unlock (void); //unlock to allow writing
-  uint64_t num = 0x11111; //number I'm storing
-  uint64_t addy = 0x0801fc00; //address
-  HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD,addy, num);//actual write
-  HAL_StatusTypeDef HAL_FLASH_Lock(void);
+  uint32_t nums[] = {0x991299,0x883488,0x885688};
 
-  uint64_t RData = 0x11111;//storing something to test if it changes after read
+  Flash_Write(0x807f000,nums,3);
 
-  //read
-  uint64_t * RDAddr = (uint64_t *)  addy;
-  RData = *RDAddr;
-  printf("");//just a place to put a breakpoint
+  uint32_t read_nums[3];
+  Flash_Read(0x807f000,read_nums,3);
 
   /* USER CODE END 2 */
 
   /* Infinite loop */
   /* USER CODE BEGIN WHILE */
+
   while (1)
   {
     /* USER CODE END WHILE */

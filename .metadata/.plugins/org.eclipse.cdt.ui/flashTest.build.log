@@ -1,35 +1,10 @@
-09:44:45 **** Incremental Build of configuration Debug for project flashTest ****
+11:55:43 **** Incremental Build of configuration Debug for project flashTest ****
 make -j6 all 
-arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
-../Core/Src/main.c: In function 'main':
-../Core/Src/main.c:108:23: warning: cast to pointer from integer of different size [-Wint-to-pointer-cast]
-  108 |   uint64_t * RDAddr = (uint64_t *)  addy;
-      |                       ^
-../Core/Src/main.c:110:3: warning: implicit declaration of function 'printf' [-Wimplicit-function-declaration]
-  110 |   printf("");//just a place to put a breakpoint
-      |   ^~~~~~
-../Core/Src/main.c:110:3: warning: incompatible implicit declaration of built-in function 'printf'
-../Core/Src/main.c:21:1: note: include '<stdio.h>' or provide a declaration of 'printf'
-   20 | #include "main.h"
-  +++ |+#include <stdio.h>
-   21 | 
-../Core/Src/main.c:110:10: warning: zero-length gnu_printf format string [-Wformat-zero-length]
-  110 |   printf("");//just a place to put a breakpoint
-      |          ^~
-../Core/Src/main.c:105:12: warning: variable 'RData' set but not used [-Wunused-but-set-variable]
-  105 |   uint64_t RData = 0x11111;//storing something to test if it changes after read
-      |            ^~~~~
-arm-none-eabi-gcc -o "flashTest.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\penne\umsats-flash\flashTest\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="flashTest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
-Finished building target: flashTest.elf
- 
 arm-none-eabi-size   flashTest.elf 
-arm-none-eabi-objdump -h -S  flashTest.elf  > "flashTest.list"
    text	   data	    bss	    dec	    hex	filename
-  12584	     52	   1700	  14336	   3800	flashTest.elf
+  12928	     52	   1700	  14680	   3958	flashTest.elf
 Finished building: default.size.stdout
  
-Finished building: flashTest.list
- 
 
-09:44:48 Build Finished. 0 errors, 5 warnings. (took 2s.283ms)
+11:55:44 Build Finished. 0 errors, 0 warnings. (took 920ms)
 
