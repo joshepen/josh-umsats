@@ -94,12 +94,12 @@ int main(void)
 
   Flash_Erase_Page(254,2);
 
-  uint32_t nums[] = {0x991299,0x883488,0x885688};
+  uint32_t nums[] = {0x98765,0xAAAAAAA,0xBBBBBBBB};
 
-  Flash_Write(0x807f000,nums,3);
+  HAL_StatusTypeDef w = Flash_Write(0x807f000,nums,3);
 
   uint32_t read_nums[3];
-  Flash_Read(0x807f000,read_nums,3);
+  HAL_StatusTypeDef r = Flash_Read(0x807f000,read_nums,3);
 
   /* USER CODE END 2 */
 

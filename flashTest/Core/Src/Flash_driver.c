@@ -6,10 +6,17 @@ HAL_StatusTypeDef Flash_Read(uint32_t address,uint8_t *buf,size_t num_bytes){
 		status = HAL_ERROR;
 		goto error;
 	}
-
+	int x;
 	uint32_t * address_pointer = (uint32_t *)  address;
 	for(size_t i=0;i<num_bytes;i++){
-		*(buf+i) = *(address_pointer + i);
+		uint32_t num = 0x0;
+		for(size_t j=0;j<8;j+=2){
+			num=address_pointer[i*8+j]%0x100;
+			buf[i * 4 + j/2] = num;
+		}
+		//for (uint32_t k=0;k<4;k++){
+			//buf[i * 4 + k] = num / (int) pow(0x100,k) % 0x100;
+		//}
 	}
 
 
@@ -25,8 +32,8 @@ HAL_StatusTypeDef Flash_Write(uint32_t start_address,uint8_t *buf,size_t num_byt
 		}
 		HAL_FLASH_Unlock ();
 
-		for(size_t i=0;i<num_bytes;i++){
-		    HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD,start_address + 8 * i, *(buf + i));
+		for(uint32_t i=0;i<num_bytes*4;i++){
+		    HAL_FLASH_Program(FLASH_TYPEPROGRAM_DOUBLEWORD,start_address+ 8 * i, buf[i]);
 		}
 
 		HAL_FLASH_Lock();

@@ -1,10 +1,10 @@
-11:55:43 **** Incremental Build of configuration Debug for project flashTest ****
+17:50:00 **** Incremental Build of configuration Debug for project flashTest ****
 make -j6 all 
 arm-none-eabi-size   flashTest.elf 
    text	   data	    bss	    dec	    hex	filename
-  12928	     52	   1700	  14680	   3958	flashTest.elf
+  12984	     52	   1700	  14736	   3990	flashTest.elf
 Finished building: default.size.stdout
  
 
-11:55:44 Build Finished. 0 errors, 0 warnings. (took 920ms)
+17:50:01 Build Finished. 0 errors, 0 warnings. (took 451ms)
 
