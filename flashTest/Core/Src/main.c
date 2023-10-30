@@ -93,13 +93,12 @@ int main(void)
   /* USER CODE BEGIN 2 */
 
   Flash_Erase_Page(254,2);
+//try uint64_t
+  char nums[] = "ABCDEFGHIJKLMNOPQ";
 
-  uint32_t nums[] = {0x98765,0xAAAAAAA,0xBBBBBBBB};
-
-  HAL_StatusTypeDef w = Flash_Write(0x807f000,nums,3);
-
-  uint32_t read_nums[3];
-  HAL_StatusTypeDef r = Flash_Read(0x807f000,read_nums,3);
+  HAL_StatusTypeDef w = Flash_Write(0x807f800,nums,strlen(nums));
+  uint32_t read_nums[strlen(nums)];
+  HAL_StatusTypeDef r = Flash_Read(0x807f800,read_nums,strlen(nums)/4);
 
   /* USER CODE END 2 */
 

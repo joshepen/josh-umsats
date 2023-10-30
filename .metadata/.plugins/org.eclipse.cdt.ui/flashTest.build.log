@@ -1,10 +1,21 @@
-17:50:00 **** Incremental Build of configuration Debug for project flashTest ****
+14:09:48 **** Incremental Build of configuration Debug for project flashTest ****
 make -j6 all 
+arm-none-eabi-gcc "../Core/Src/Flash_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/Flash_driver.d" -MT"Core/Src/Flash_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Flash_driver.o"
+../Core/Src/Flash_driver.c: In function 'Flash_Write':
+../Core/Src/Flash_driver.c:31:12: warning: variable 'end_val' set but not used [-Wunused-but-set-variable]
+   31 |    uint8_t end_val;
+      |            ^~~~~~~
+arm-none-eabi-gcc -o "flashTest.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\penne\umsats-flash\flashTest\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="flashTest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: flashTest.elf
+ 
 arm-none-eabi-size   flashTest.elf 
+arm-none-eabi-objdump -h -S  flashTest.elf  > "flashTest.list"
    text	   data	    bss	    dec	    hex	filename
-  12984	     52	   1700	  14736	   3990	flashTest.elf
+  13332	     52	   1700	  15084	   3aec	flashTest.elf
 Finished building: default.size.stdout
  
+Finished building: flashTest.list
+ 
 
-17:50:01 Build Finished. 0 errors, 0 warnings. (took 451ms)
+14:09:49 Build Finished. 0 errors, 1 warnings. (took 829ms)
 

@@ -3,7 +3,6 @@ https://medium.com/teamarimac/stm32-flash-programming-3418bf09231c
 
 Space:
 -256 pages
--2K each
 -0x800 addresses per page
 -Page number = (address-0x8000000) / 0x800
 -Address range = [ pageNumber * 0x800 + 0x8000000 , “ + 0x7FF ]
@@ -12,6 +11,10 @@ Space:
 -Always erase a page before writing to it.
 -I'm writing some methods to make the writing/reading/erasing easier:
 	HAL_StatusTypeDef Flash_Write(uint32_t start_address,uint8_t *buf,size_t num_bytes)
+		- number to store must be [0x0,0xFFFFFFFF]
+		- it is recommended that you read before you write to make sure the memory locations are empty.
+			- system code starts at about 0x8009500 for me, but read first to be sure
+		- one number takes up 0x20 addresses for some reason
 	HAL_StatusTypeDef Flash_Read(uint32_t address,uint8_t *buf,size_t num_bytes)
 	void Flash_Erase_Page(uint8_t page_num,uint8_t num_pages) 
 		-erase by page number

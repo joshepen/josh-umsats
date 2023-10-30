@@ -1,4 +1,3 @@
-../Core/Src/Flash_driver.c:2:19:Flash_Read	48	static
-../Core/Src/Flash_driver.c:26:19:Flash_Write	40	static
-../Core/Src/Flash_driver.c:44:6:Flash_Erase_Page	40	static
-../Core/Src/Flash_driver.c:58:6:Flash_Erase_Address	8216	static
+../Core/Src/Flash_driver.c:2:19:Flash_Read	40	static
+../Core/Src/Flash_driver.c:21:19:Flash_Write	88	static
+../Core/Src/Flash_driver.c:61:6:Flash_Erase_Page	40	static
