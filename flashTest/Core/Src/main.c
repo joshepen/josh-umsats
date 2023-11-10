@@ -74,7 +74,7 @@ int main(void)
   /* MCU Configuration--------------------------------------------------------*/
 
   /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
-  HAL_Init();
+					HAL_Init();
 
   /* USER CODE BEGIN Init */
 
@@ -91,14 +91,13 @@ int main(void)
   MX_GPIO_Init();
   MX_USART2_UART_Init();
   /* USER CODE BEGIN 2 */
-
-  Flash_Erase_Page(254,2);
-//try uint64_t
+  uint32_t * start_address = (uint32_t*) Flash_Get_Free_Address();
+  Flash_Erase_Page(Flash_Address_To_Page(start_address),1);
   char nums[] = "ABCDEFGHIJKLMNOPQ";
+  Flash_Write(start_address,nums,strlen(nums));
+  char nums2[strlen(nums)];
+  Flash_Read(start_address,nums2,strlen(nums));
 
-  HAL_StatusTypeDef w = Flash_Write(0x807f800,nums,strlen(nums));
-  uint32_t read_nums[strlen(nums)];
-  HAL_StatusTypeDef r = Flash_Read(0x807f800,read_nums,strlen(nums)/4);
 
   /* USER CODE END 2 */
 

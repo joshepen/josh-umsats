@@ -1,21 +1,80 @@
-14:09:48 **** Incremental Build of configuration Debug for project flashTest ****
+12:15:23 **** Incremental Build of configuration Debug for project flashTest ****
 make -j6 all 
-arm-none-eabi-gcc "../Core/Src/Flash_driver.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -MMD -MP -MF"Core/Src/Flash_driver.d" -MT"Core/Src/Flash_driver.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/Flash_driver.o"
-../Core/Src/Flash_driver.c: In function 'Flash_Write':
-../Core/Src/Flash_driver.c:31:12: warning: variable 'end_val' set but not used [-Wunused-but-set-variable]
-   31 |    uint8_t end_val;
-      |            ^~~~~~~
+arm-none-eabi-gcc "../Core/Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DUSE_HAL_DRIVER -DSTM32L452xx -c -I../Core/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc -I../Drivers/STM32L4xx_HAL_Driver/Inc/Legacy -I../Drivers/CMSIS/Device/ST/STM32L4xx/Include -I../Drivers/CMSIS/Include -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Core/Src/main.d" -MT"Core/Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Core/Src/main.o"
+../Core/Src/main.c: In function 'main':
+../Core/Src/main.c:95:42: warning: passing argument 1 of 'Flash_Address_To_Page' makes integer from pointer without a cast [-Wint-conversion]
+   95 |   Flash_Erase_Page(Flash_Address_To_Page(start_address),1);
+      |                                          ^~~~~~~~~~~~~
+      |                                          |
+      |                                          uint32_t * {aka long unsigned int *}
+In file included from ../Core/Src/main.c:26:
+../Core/Inc/Flash_driver.h:16:40: note: expected 'uint32_t' {aka 'long unsigned int'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   16 | uint8_t Flash_Address_To_Page(uint32_t address);
+      |                               ~~~~~~~~~^~~~~~~
+../Core/Src/main.c:97:56: warning: implicit declaration of function 'strlen' [-Wimplicit-function-declaration]
+   97 |   HAL_StatusTypeDef w = Flash_Write(start_address,nums,strlen(nums));
+      |                                                        ^~~~~~
+../Core/Src/main.c:27:1: note: include '<string.h>' or provide a declaration of 'strlen'
+   26 | #include "Flash_driver.h"
+  +++ |+#include <string.h>
+   27 | 
+../Core/Src/main.c:97:56: warning: incompatible implicit declaration of built-in function 'strlen' [-Wbuiltin-declaration-mismatch]
+   97 |   HAL_StatusTypeDef w = Flash_Write(start_address,nums,strlen(nums));
+      |                                                        ^~~~~~
+../Core/Src/main.c:97:56: note: include '<string.h>' or provide a declaration of 'strlen'
+../Core/Src/main.c:97:37: warning: passing argument 1 of 'Flash_Write' makes integer from pointer without a cast [-Wint-conversion]
+   97 |   HAL_StatusTypeDef w = Flash_Write(start_address,nums,strlen(nums));
+      |                                     ^~~~~~~~~~~~~
+      |                                     |
+      |                                     uint32_t * {aka long unsigned int *}
+In file included from ../Core/Src/main.c:26:
+../Core/Inc/Flash_driver.h:12:40: note: expected 'uint32_t' {aka 'long unsigned int'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   12 | HAL_StatusTypeDef Flash_Write(uint32_t address,uint8_t *buf,size_t num_chars);
+      |                               ~~~~~~~~~^~~~~~~
+../Core/Src/main.c:97:51: warning: pointer targets in passing argument 2 of 'Flash_Write' differ in signedness [-Wpointer-sign]
+   97 |   HAL_StatusTypeDef w = Flash_Write(start_address,nums,strlen(nums));
+      |                                                   ^~~~
+      |                                                   |
+      |                                                   char *
+In file included from ../Core/Src/main.c:26:
+../Core/Inc/Flash_driver.h:12:57: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   12 | HAL_StatusTypeDef Flash_Write(uint32_t address,uint8_t *buf,size_t num_chars);
+      |                                                ~~~~~~~~~^~~
+../Core/Src/main.c:99:36: warning: passing argument 1 of 'Flash_Read' makes integer from pointer without a cast [-Wint-conversion]
+   99 |   HAL_StatusTypeDef r = Flash_Read(start_address,nums2,strlen(nums));
+      |                                    ^~~~~~~~~~~~~
+      |                                    |
+      |                                    uint32_t * {aka long unsigned int *}
+In file included from ../Core/Src/main.c:26:
+../Core/Inc/Flash_driver.h:11:39: note: expected 'uint32_t' {aka 'long unsigned int'} but argument is of type 'uint32_t *' {aka 'long unsigned int *'}
+   11 | HAL_StatusTypeDef Flash_Read(uint32_t address,uint8_t *buf,size_t num_chars);
+      |                              ~~~~~~~~~^~~~~~~
+../Core/Src/main.c:99:50: warning: pointer targets in passing argument 2 of 'Flash_Read' differ in signedness [-Wpointer-sign]
+   99 |   HAL_StatusTypeDef r = Flash_Read(start_address,nums2,strlen(nums));
+      |                                                  ^~~~~
+      |                                                  |
+      |                                                  char *
+In file included from ../Core/Src/main.c:26:
+../Core/Inc/Flash_driver.h:11:56: note: expected 'uint8_t *' {aka 'unsigned char *'} but argument is of type 'char *'
+   11 | HAL_StatusTypeDef Flash_Read(uint32_t address,uint8_t *buf,size_t num_chars);
+      |                                               ~~~~~~~~~^~~
+../Core/Src/main.c:99:21: warning: unused variable 'r' [-Wunused-variable]
+   99 |   HAL_StatusTypeDef r = Flash_Read(start_address,nums2,strlen(nums));
+      |                     ^
+../Core/Src/main.c:97:21: warning: unused variable 'w' [-Wunused-variable]
+   97 |   HAL_StatusTypeDef w = Flash_Write(start_address,nums,strlen(nums));
+      |                     ^
 arm-none-eabi-gcc -o "flashTest.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Users\penne\umsats-flash\flashTest\STM32L452RETX_FLASH.ld" --specs=nosys.specs -Wl,-Map="flashTest.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
 Finished building target: flashTest.elf
  
 arm-none-eabi-size   flashTest.elf 
 arm-none-eabi-objdump -h -S  flashTest.elf  > "flashTest.list"
    text	   data	    bss	    dec	    hex	filename
-  13332	     52	   1700	  15084	   3aec	flashTest.elf
+  13604	     52	   1700	  15356	   3bfc	flashTest.elf
 Finished building: default.size.stdout
  
 Finished building: flashTest.list
  
 
-14:09:49 Build Finished. 0 errors, 1 warnings. (took 829ms)
+12:15:24 Build Finished. 0 errors, 9 warnings. (took 1s.76ms)
 
